@@ -1,0 +1,19 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+*.pyc
+.env
+index/
+qdrant_local/
+chroma_db/
+
+# Exclude large local bge-m3 model cache
+models/hf_cache/models--BAAI--bge-m3/
+models/hf_cache/hub/models--BAAI--bge-m3/
+models/hf_cache/.locks/models--BAAI--bge-m3/
+models/hf_cache/
+
+# Build metadata
+src/*.egg-info/

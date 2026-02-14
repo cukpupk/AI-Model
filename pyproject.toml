@@ -1,0 +1,46 @@
+[project]
+name = "industrial-rag"
+version = "0.1.0"
+description = "Professional industrial-grade advanced RAG service"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.115.0",
+    "uvicorn[standard]>=0.30.0",
+    "pydantic>=2.8.0",
+    "pydantic-settings>=2.4.0",
+    "chromadb>=0.5.5",
+    "sentence-transformers>=3.0.0",
+    "rank-bm25>=0.2.2",
+    "litellm>=1.45.0",
+    "numpy>=1.26.0",
+    "typer>=0.12.0",
+    "python-dotenv>=1.0.1",
+    "orjson>=3.10.0",
+    "pypdf>=4.3.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3.0",
+    "ruff>=0.6.0",
+    "mypy>=1.11.0",
+]
+
+[project.scripts]
+rag-api = "rag_service.api:run"
+rag-cli = "rag_service.cli:app"
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
