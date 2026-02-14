@@ -17,3 +17,8 @@ models/hf_cache/
 
 # Build metadata
 src/*.egg-info/
+
+# Reassembled local bge-m3 runtime directory
+models/local/bge-m3/
+models/_staging/
+models/chunks/bge-m3/*.tar

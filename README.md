@@ -50,6 +50,8 @@ Set at least:
 
 - `LITELLM_MODEL` (example: `gpt-4.1-mini`, `azure/gpt-4.1-mini`, `ollama/llama3.1`)
 - Required provider credentials (`OPENAI_API_KEY`, Azure vars, etc.)
+- For local bge-m3 runtime after chunk reassembly:
+   - `EMBEDDING_MODEL=./models/local/bge-m3`
 
 ### 3) Vector DB mode
 
@@ -117,3 +119,19 @@ Then run locally:
 3. Start this API and call `/query`
 
 Note: ChromaDB is a vector database, not a text generation model. You can use ChromaDB for retrieval storage, but generation still needs an LLM (e.g., Ollama local model).
+
+## bge-m3 split + reassemble (no LFS)
+
+This repository stores full bge-m3 runtime package as 45MiB chunk files in [models/chunks/bge-m3](models/chunks/bge-m3).
+
+- Split script: [scripts/split_bge_m3_chunks.py](scripts/split_bge_m3_chunks.py)
+- Reassemble script: [scripts/reassemble_bge_m3_chunks.py](scripts/reassemble_bge_m3_chunks.py)
+- Manifest template: [templates/bge_m3_chunks.manifest.template.json](templates/bge_m3_chunks.manifest.template.json)
+
+Reassemble to local runtime directory:
+
+```bash
+python scripts/reassemble_bge_m3_chunks.py --chunks-dir models/chunks/bge-m3 --output-dir models/local
+```
+
+Then set `EMBEDDING_MODEL=./models/local/bge-m3` and restart API.

@@ -1,0 +1,17 @@
+{
+  "name": "bge-m3-runtime",
+  "format": "tar+parts",
+  "chunk_size_mib": 45,
+  "bundle": {
+    "file": "bge-m3-runtime.tar",
+    "size": 0,
+    "sha256": "<bundle_sha256>"
+  },
+  "parts": [
+    {
+      "file": "bge-m3-runtime.part-00001",
+      "size": 0,
+      "sha256": "<part_sha256>"
+    }
+  ]
+}

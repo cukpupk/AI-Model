@@ -1,0 +1,4 @@
+models/chunks/bge-m3/*.part-* binary -text
+models/chunks/bge-m3/*.tar binary -text
+models/chunks/bge-m3/SHA256SUMS text eol=lf
+models/chunks/bge-m3/manifest.json text eol=lf
