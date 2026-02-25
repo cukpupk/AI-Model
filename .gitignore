@@ -22,3 +22,6 @@ src/*.egg-info/
 models/local/bge-m3/
 models/_staging/
 models/chunks/bge-m3/*.tar
+models/cv/Qwen2-VL-2B-Instruct/
+models/local/Qwen2-VL-2B-Instruct/
+models/chunks/qwen2-vl-2b-instruct/*.tar

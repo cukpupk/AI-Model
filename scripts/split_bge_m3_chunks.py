@@ -31,8 +31,8 @@ def split_file(source_tar: Path, out_dir: Path, chunk_size_bytes: int, prefix: s
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Split bge-m3 runtime bundle into 45MiB chunks")
-    parser.add_argument("--source-dir", required=True, help="Prepared bge-m3 runtime source directory")
+    parser = argparse.ArgumentParser(description="Split model runtime bundle into fixed-size chunks")
+    parser.add_argument("--source-dir", required=True, help="Prepared model runtime source directory")
     parser.add_argument("--output-dir", default="models/chunks/bge-m3", help="Output chunk directory")
     parser.add_argument("--prefix", default="bge-m3-runtime", help="Chunk prefix")
     parser.add_argument("--chunk-size-mib", type=int, default=45, help="Chunk size in MiB")
@@ -44,7 +44,7 @@ def main() -> None:
 
     bundle_tar = out_dir / f"{args.prefix}.tar"
     with tarfile.open(bundle_tar, "w") as tar:
-        tar.add(source_dir, arcname="bge-m3")
+        tar.add(source_dir, arcname=source_dir.name)
 
     chunk_size_bytes = args.chunk_size_mib * 1024 * 1024
     parts = split_file(bundle_tar, out_dir, chunk_size_bytes, args.prefix)
@@ -60,9 +60,10 @@ def main() -> None:
     (out_dir / "SHA256SUMS").write_text("\n".join(sha_lines) + "\n", encoding="utf-8")
 
     manifest = {
-        "name": "bge-m3-runtime",
+        "name": f"{args.prefix}",
         "format": "tar+parts",
         "chunk_size_mib": args.chunk_size_mib,
+        "extract_dir": source_dir.name,
         "bundle": {
             "file": bundle_tar.name,
             "size": bundle_tar.stat().st_size,

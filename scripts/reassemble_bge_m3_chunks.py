@@ -44,7 +44,11 @@ def main() -> None:
     with tarfile.open(bundle, "r") as tar:
         tar.extractall(path=output_dir, filter="data")
 
-    print(f"Reassembled and extracted to {output_dir / 'bge-m3'}")
+    extract_dir = manifest.get("extract_dir", "")
+    if extract_dir:
+        print(f"Reassembled and extracted to {output_dir / extract_dir}")
+    else:
+        print(f"Reassembled and extracted to {output_dir}")
 
 
 if __name__ == "__main__":

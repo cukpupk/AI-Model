@@ -2,3 +2,7 @@ models/chunks/bge-m3/*.part-* binary -text
 models/chunks/bge-m3/*.tar binary -text
 models/chunks/bge-m3/SHA256SUMS text eol=lf
 models/chunks/bge-m3/manifest.json text eol=lf
+models/chunks/qwen2-vl-2b-instruct/*.part-* binary -text
+models/chunks/qwen2-vl-2b-instruct/*.tar binary -text
+models/chunks/qwen2-vl-2b-instruct/SHA256SUMS text eol=lf
+models/chunks/qwen2-vl-2b-instruct/manifest.json text eol=lf
